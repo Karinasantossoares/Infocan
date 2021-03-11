@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">InfocanGov</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_title_splash_fragment">Infocam</string>
+    <string name="text_type_it_state">Digite seu estado</string>
+    <string name="text_hint_et">Ex: DF, SP</string>
+    <string name="text_ok">OK</string>
+    <string name="text_save">SALVOS</string>
+    <string name="text_name_broken">PT</string>
+    <string name="text_results">RESULTADOS</string>
+    <string name="texte_save_details">SALVAR</string>
+    <string name="text_send_email">ENVIAR EMAIL</string>
+    <string name="text_date_of_birth">Data de nascimento</string>
+    <string name="text_party">Partido</string>
+    <string name="text_phone">Telefone</string>
+    <string name="text_situation">Situação</string>
+    <string name="text_expenses">DESPESAS</string>
+    <string name="message_error_list">Por favor digite a url do estado desajado.</string>
+    <string name="message">ok</string>
+    <string name="date_atualization">20/01/2021</string>
+    <string name="message_atualization">Atualizado em:</string>
+    <string name="messsage_error_expense">Erro ao listar despesas.</string>
+    <string name="load_more">Carregar mais…</string>
+    <string name="message_email_not_app">Desculpe, você não tem um aplicativo de email instalado em seu celular.</string>
+    <string name="treatment_pronoun">Vossa Excel ência (V. Ex. ª) ,</string>
+    <string name="subject">Assunto :</string>
+    <string name="cipher">R$</string>
+</resources>
