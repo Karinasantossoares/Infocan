@@ -12,9 +12,7 @@ data class DetailsPersonEntity(
     val email: String,
     val urlFoto: String,
     val siglaPartido: String,
-    val gabinete: Gabinete,
     val situacao: String,
     val dataNascimento: String,
-    val ultimoStatus: Status,
     val telefone: String
 )

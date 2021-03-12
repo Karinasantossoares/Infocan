@@ -3,7 +3,7 @@ package com.example.trasparenciagov.useCase
 import android.content.Context
 import com.example.trasparenciagov.R
 
-import com.example.trasparenciagov.repository.network.InfocanRepository
+import com.example.trasparenciagov.repository.networkRepository.InfocanRepository
 import io.reactivex.Single
 import java.lang.Exception
 

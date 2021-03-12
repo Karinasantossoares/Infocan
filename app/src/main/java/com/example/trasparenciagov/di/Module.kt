@@ -2,7 +2,7 @@ package com.example.trasparenciagov.di
 
 import android.content.Context
 import com.example.trasparenciagov.preference.AppPreferences
-import com.example.trasparenciagov.repository.network.InfocanRepository
+import com.example.trasparenciagov.repository.networkRepository.InfocanRepository
 import com.example.trasparenciagov.retrofit.initRetrofit
 //import com.example.trasparenciagov.room.AppDataBase
 import com.example.trasparenciagov.service.InfocanService
