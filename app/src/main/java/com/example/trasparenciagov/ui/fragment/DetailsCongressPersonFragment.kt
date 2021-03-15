@@ -15,6 +15,7 @@ import com.example.trasparenciagov.R
 import com.example.trasparenciagov.adapter.ExpenserAdapter
 import com.example.trasparenciagov.databinding.FragmentDetailsCongressPersonBinding
 import com.example.trasparenciagov.extensions.addMask
+import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.example.trasparenciagov.extensions.toText
 import com.example.trasparenciagov.model.network.SendEmail
 import com.example.trasparenciagov.viewModel.InfocanViewModel
@@ -49,12 +50,16 @@ class DetailsCongressPersonFragment : Fragment() {
 
         viewModel.getDetailsExpense()
         viewModel.getDetailsPolitical()
+        viewModel.clearLiveDatas()
 
 
         binding.tvAtualizationDetails.addMask("NN/NN/NNNN")
         binding.tvAtualizationDetails.setText(Date().toText())
-        binding.btnSendEmailDetails.setOnClickListener {
+        binding.btnSendEmailDetails.setOnClickListenerAnim {
             viewModel.sendEmail()
+        }
+        binding.btnSaveDetails.setOnClickListenerAnim {
+            viewModel.savePoliticalLocal()
         }
 
         viewModel.sendEmailPoliticalLiveData.observe(viewLifecycleOwner, Observer {
@@ -82,6 +87,18 @@ class DetailsCongressPersonFragment : Fragment() {
             binding.pbLoad.isVisible = it
         })
 
+        viewModel.messageSuccesInsertPoliticalLiveData.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.messageErrorInsertPoliticalLiveData.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.setTextSaveorRemoveLiveData.observe(viewLifecycleOwner, Observer {
+            binding.btnSaveDetails.text = it
+        })
+
         viewModel.succesDetailsPolitical.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.nameMemberDetails.text = it.nome
@@ -103,6 +120,7 @@ class DetailsCongressPersonFragment : Fragment() {
             val adapter = ExpenserAdapter(it)
             binding.itemDetailsExpenses.adapter = adapter
         })
+
     }
 
     override fun onDestroy() {

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.trasparenciagov.R
 import com.example.trasparenciagov.adapter.MembersAdapter
 import com.example.trasparenciagov.databinding.FragmentListMembersBinding
+import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.example.trasparenciagov.viewModel.InfocanViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -35,19 +36,22 @@ class ListMembersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getPoliticalLocal()
+        viewModel.verifyItemSave()
+
         membersAdapter = MembersAdapter(onClick = { perfilPerson ->
             viewModel.selectedPolitical(perfilPerson)
             findNavController().navigate(R.id.action_listSaveMembersFragment_to_detailsCongressPersonFragment)
         })
 
         viewModel.showUfPreferences()
-        binding.btnOkListSaveFragment.setOnClickListener {
+        binding.btnOkListSaveFragment.setOnClickListenerAnim {
             val siglaUf = binding.etTypeItState.text.toString()
             val list = siglaUf.split(",")
             viewModel.getFirstListPolitical(list)
         }
 
-        binding.textLoadMore.setOnClickListener {
+        binding.textLoadMore.setOnClickListenerAnim {
             val siglaUf = binding.etTypeItState.text.toString()
             val list = listOf(siglaUf)
             viewModel.getListPolitical(list)
@@ -56,6 +60,10 @@ class ListMembersFragment : Fragment() {
         viewModel.ufPreferencesLiveData.observe(viewLifecycleOwner, Observer {
             binding.etTypeItState.setText(it)
 
+        })
+
+        viewModel.setTitleSaveOrResultMembers.observe(viewLifecycleOwner, Observer {
+            binding.tvSaves.text = it
         })
 
         viewModel.loadLiveData.observe(viewLifecycleOwner, Observer {

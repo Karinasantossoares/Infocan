@@ -6,12 +6,13 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.example.trasparenciagov.model.persistencesRoom.DetailsPersonEntity
 import com.example.trasparenciagov.model.persistencesRoom.PerfilPersonEntity
+import io.reactivex.Single
 
 @Dao
 interface DetailsPersonDao {
 
-    @Query("SELECT * FROM details")
-    fun getDetails () :DetailsPersonEntity
+    @Query("SELECT * FROM details WHERE uid =:id")
+    fun getDetails (id:Int) : Single<DetailsPersonEntity>
 
     @Delete
     fun deleteDetails(detailsPersonEntity: DetailsPersonEntity)

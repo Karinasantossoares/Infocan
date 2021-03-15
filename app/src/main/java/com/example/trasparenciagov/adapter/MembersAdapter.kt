@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trasparenciagov.R
 import com.example.trasparenciagov.model.network.PerfilPersonResponse
 import com.example.trasparenciagov.databinding.ItemMembersBinding
+import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.squareup.picasso.Picasso
 
 class MembersAdapter(
@@ -46,7 +47,7 @@ class MembersAdapter(
                     .fit()
                     .centerCrop()
                     .into(binding.ivPerson)
-                binding.ivPerson.setOnClickListener {
+                binding.ivPerson.setOnClickListenerAnim {
                     onClick.invoke(personCongress)
                 }
 

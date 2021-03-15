@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "perfil")
 data class PerfilPersonEntity (
-    @PrimaryKey val uid :Int = 0,
+    @PrimaryKey(autoGenerate = true)val uid :Int =0,
     val nome: String,
     val urlFoto: String,
     val siglaPartido: String

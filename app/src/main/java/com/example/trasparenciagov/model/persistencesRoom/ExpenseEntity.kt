@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "expenses")
 data class ExpenseEntity(
-    @PrimaryKey var uid: Int= 0,
+    @PrimaryKey(autoGenerate = true) var uid: Int?=0,
     val tipoDespesa: String,
     val valorDocumento: Float,
     val dataDocumento: String

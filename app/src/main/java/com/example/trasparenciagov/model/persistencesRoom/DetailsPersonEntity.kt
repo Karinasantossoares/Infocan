@@ -7,7 +7,7 @@ import com.example.trasparenciagov.model.dto.Status
 
 @Entity (tableName = "details")
 data class DetailsPersonEntity(
-    @PrimaryKey var uid: Int =0,
+    @PrimaryKey(autoGenerate = true) var uid: Int? =0,
     val nome: String,
     val email: String,
     val urlFoto: String,

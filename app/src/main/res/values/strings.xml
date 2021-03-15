@@ -9,7 +9,6 @@
     <string name="text_save">SALVOS</string>
     <string name="text_name_broken">PT</string>
     <string name="text_results">RESULTADOS</string>
-    <string name="texte_save_details">SALVAR</string>
     <string name="text_send_email">ENVIAR EMAIL</string>
     <string name="text_date_of_birth">Data de nascimento</string>
     <string name="text_party">Partido</string>
@@ -21,9 +20,17 @@
     <string name="date_atualization">20/01/2021</string>
     <string name="message_atualization">Atualizado em:</string>
     <string name="messsage_error_expense">Erro ao listar despesas.</string>
-    <string name="load_more">Carregar mais…</string>
+    <string name="load_more">Carregar mais</string>
     <string name="message_email_not_app">Desculpe, você não tem um aplicativo de email instalado em seu celular.</string>
     <string name="treatment_pronoun">Vossa Excel ência (V. Ex. ª) ,</string>
     <string name="subject">Assunto :</string>
     <string name="cipher">R$</string>
+    <string name="message_error_list_local">Não foi possível  carregar deputados salvos.</string>
+    <string name="message_delete_political_ok">Item deletado com sucesso.</string>
+    <string name="message_error_delete_political">Erro ao deletar item.</string>
+    <string name="message_success_insert_political">Item salvo com sucesso!</string>
+    <string name="error_save_political">Erro ao salvar item.</string>
+    <string name="remove">message_change_remove</string>
+    <string name="message_set_text_save">Remover</string>
+    <string name="message_save_ok">Salvar</string>
 </resources>

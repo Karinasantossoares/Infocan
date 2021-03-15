@@ -2,8 +2,12 @@ package com.example.trasparenciagov.di
 
 import android.content.Context
 import com.example.trasparenciagov.preference.AppPreferences
+import com.example.trasparenciagov.repository.localRepository.DetailsPersonRepository
+import com.example.trasparenciagov.repository.localRepository.ExpenseRepository
+import com.example.trasparenciagov.repository.localRepository.PerfilPoliticalRepository
 import com.example.trasparenciagov.repository.networkRepository.InfocanRepository
 import com.example.trasparenciagov.retrofit.initRetrofit
+import com.example.trasparenciagov.room.AppDataBase
 //import com.example.trasparenciagov.room.AppDataBase
 import com.example.trasparenciagov.service.InfocanService
 import com.example.trasparenciagov.useCase.InfocanUseCase
@@ -15,15 +19,18 @@ import retrofit2.Retrofit
 
 val infocanModule = module {
     single { InfocanRepository(get()) }
+    single { DetailsPersonRepository(get()) }
+    single { ExpenseRepository(get()) }
+    single { PerfilPoliticalRepository(get()) }
     single { get<Retrofit>().create(InfocanService::class.java) }
     single { initRetrofit() }
-    single { InfocanUseCase(androidContext(),get()) }
+    single { InfocanUseCase(androidContext(),get(),get(),get(),get()) }
     single { androidContext().getSharedPreferences(AppPreferences.NAME, Context.MODE_PRIVATE) }
     single { AppPreferences(get()) }
-//    single { AppDataBase.instance(androidContext()) }
-//    single {get<AppDataBase>().perfilPersonDao()  }
-//    single {get<AppDataBase>().detailsPersonDao()  }
-//    single {get<AppDataBase>().expenseDao()  }
+    single { AppDataBase.instance(androidContext()) }
+    single {get<AppDataBase>().perfilPersonDao()  }
+    single {get<AppDataBase>().detailsPersonDao()  }
+    single {get<AppDataBase>().expenseDao()  }
     viewModel { InfocanViewModel(androidContext(),get(),get())}
 }
 
