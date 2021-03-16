@@ -79,16 +79,16 @@ class InfocanViewModel(
                         page++
                         messageloadmore.value = true
                         successListPoliticalLiveData.value?.let { currentList ->
-                            currentList.addAll(res)
-                            successListPoliticalLiveData.value = currentList
-                        }
+                                currentList.addAll(res)
+                                successListPoliticalLiveData.value = currentList
+                            
+                            }
 
                         loadLiveData.value = false
-
                     } else {
-                        messageloadmore.value = false
                         loadLiveData.value = false
-                        errorListPoliticalLiveData.value = error.localizedMessage
+                        messageloadmore.value = false
+                        errorListPoliticalLiveData.value = context.getString(R.string.error_list_isEmpty)
                     }
                 })
             }
@@ -178,8 +178,6 @@ class InfocanViewModel(
     fun selectedPolitical(perfil: PerfilPersonResponse) {
         selectedPoliticalLiveData.value = perfil
     }
-
-
 
     fun clearSelecetedLiveData() {
         selectedPoliticalLiveData = MutableLiveData()

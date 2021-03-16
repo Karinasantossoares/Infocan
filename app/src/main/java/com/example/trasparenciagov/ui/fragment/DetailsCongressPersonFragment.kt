@@ -88,11 +88,11 @@ class DetailsCongressPersonFragment : Fragment() {
         })
 
         viewModel.messageSuccesInsertPoliticalLiveData.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
         viewModel.messageErrorInsertPoliticalLiveData.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
         viewModel.setTextSaveorRemoveLiveData.observe(viewLifecycleOwner, Observer {
@@ -127,5 +127,6 @@ class DetailsCongressPersonFragment : Fragment() {
         super.onDestroy()
         viewModel.clearSelecetedLiveData()
     }
+
 
 }

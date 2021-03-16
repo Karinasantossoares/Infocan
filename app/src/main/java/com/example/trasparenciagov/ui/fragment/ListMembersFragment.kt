@@ -39,6 +39,7 @@ class ListMembersFragment : Fragment() {
         viewModel.getPoliticalLocal()
         viewModel.verifyItemSave()
 
+
         membersAdapter = MembersAdapter(onClick = { perfilPerson ->
             viewModel.selectedPolitical(perfilPerson)
             findNavController().navigate(R.id.action_listSaveMembersFragment_to_detailsCongressPersonFragment)
@@ -56,6 +57,7 @@ class ListMembersFragment : Fragment() {
             val list = listOf(siglaUf)
             viewModel.getListPolitical(list)
         }
+
 
         viewModel.ufPreferencesLiveData.observe(viewLifecycleOwner, Observer {
             binding.etTypeItState.setText(it)
