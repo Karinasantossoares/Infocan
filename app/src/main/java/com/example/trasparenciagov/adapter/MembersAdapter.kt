@@ -21,7 +21,6 @@ class MembersAdapter(
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfocanViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_members, parent, false)
@@ -42,14 +41,14 @@ class MembersAdapter(
         fun bindView(personCongress: PerfilPersonResponse) {
             binding.tvNamePerson.text = personCongress.nome
             binding.tvBroken.text = personCongress.siglaPartido
-                Picasso.get()
-                    .load(personCongress.urlFoto)
-                    .fit()
-                    .centerCrop()
-                    .into(binding.ivPerson)
-                binding.ivPerson.setOnClickListenerAnim {
-                    onClick.invoke(personCongress)
-                }
+            Picasso.get()
+                .load(personCongress.urlFoto)
+                .fit()
+                .centerCrop()
+                .into(binding.ivPerson)
+            binding.ivPerson.setOnClickListenerAnim {
+                onClick.invoke(personCongress)
+            }
 
 
         }

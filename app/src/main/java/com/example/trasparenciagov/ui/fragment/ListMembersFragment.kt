@@ -37,7 +37,7 @@ class ListMembersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getPoliticalLocal()
-        viewModel.verifyItemSave()
+        viewModel.clearLiveDatas()
 
 
         membersAdapter = MembersAdapter(onClick = { perfilPerson ->
@@ -90,5 +90,6 @@ class ListMembersFragment : Fragment() {
                 }
             })
     }
+
 }
 

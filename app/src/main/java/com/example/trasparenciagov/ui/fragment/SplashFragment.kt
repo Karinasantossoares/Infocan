@@ -3,7 +3,6 @@ package com.example.trasparenciagov.ui.fragment
 
 import android.os.Bundle
 import android.os.Handler
-import android.os.HandlerThread
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
@@ -34,9 +33,15 @@ class SplashFragment : Fragment() {
         handle.postDelayed(
             {
                 findNavController().navigate(R.id.action_splashFragment_to_listSaveMembersFragment)
-            }, 1000
+            }, 1500
         )
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+
 
 }
 

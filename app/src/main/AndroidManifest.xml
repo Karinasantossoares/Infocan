@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrasparenciaGov">
         <activity android:name="com.example.trasparenciagov.ui.activity.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -40,21 +40,12 @@ class InfocanViewModel(
     var messageSuccesInsertPoliticalLiveData = MutableLiveData<String>()
     var messageErrorDeletePoliticalLiveData = MutableLiveData<String>()
     var messageErrorInsertPoliticalLiveData = MutableLiveData<String>()
-    var politicalSaveliveData = MutableLiveData<PerfilPersonResponse>()
     var setTextSaveorRemoveLiveData = MutableLiveData<String>()
     var setTitleSaveOrResultMembers=MutableLiveData<String>()
 
     init {
         if(selectedPoliticalLiveData.value == null){
             setTextSaveorRemoveLiveData.value = context.getString(R.string.message_save_ok)
-        }
-    }
-
-    fun verifyItemSave(){
-        if(successListPoliticalLiveData.value != null){
-            setTitleSaveOrResultMembers.value = context.getString(R.string.text_save)
-        }else{
-            setTitleSaveOrResultMembers.value=context.getString(R.string.text_results)
         }
     }
 
@@ -135,10 +126,8 @@ class InfocanViewModel(
         disposables.addAll(useCase.getPoliticalLocal().subscribe { res, error ->
             if (res != null) {
                 loadLiveData.value = false
-                successListPoliticalLiveData.value?.let { currentlist ->
-                    currentlist.addAll(res)
-                    successListPoliticalLiveData.value = currentlist
-                }
+                    successListPoliticalLiveData.value = res.toMutableList()
+
             } else {
                 messageErrorListLocal.value = context.getString(R.string.message_error_list_local)
             }

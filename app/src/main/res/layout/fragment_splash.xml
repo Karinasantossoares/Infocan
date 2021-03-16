@@ -14,38 +14,16 @@
             android:id="@+id/title_splash_fragemnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="73dp"
             android:fontFamily="@font/comfortaa_light"
             android:text="@string/text_title_splash_fragment"
             android:textColor="@color/color_white"
             android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_magnifying"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="275dp"
-            android:layout_marginBottom="486dp"
-            android:src="@drawable/ic_magnifying_glass"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/title_splash_fragemnt" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_flag"
-            android:layout_width="134dp"
-            android:layout_height="128dp"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="313dp"
-            android:src="@drawable/ic_brazil"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_splash_fragemnt" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
