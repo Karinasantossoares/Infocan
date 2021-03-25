@@ -26,20 +26,7 @@ class SplashFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-
-        val handle = Handler(Looper.getMainLooper())
-        handle.postDelayed(
-            {
-                findNavController().navigate(R.id.action_splashFragment_to_listSaveMembersFragment)
-            }, 1500
-        )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
     }
 
 

@@ -40,6 +40,7 @@ class ListMembersFragment : Fragment() {
         viewModel.clearLiveDatas()
 
 
+
         membersAdapter = MembersAdapter(onClick = { perfilPerson ->
             viewModel.selectedPolitical(perfilPerson)
             findNavController().navigate(R.id.action_listSaveMembersFragment_to_detailsCongressPersonFragment)
@@ -59,6 +60,10 @@ class ListMembersFragment : Fragment() {
         }
 
 
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getPoliticalLocal()
+        }
+
         viewModel.ufPreferencesLiveData.observe(viewLifecycleOwner, Observer {
             binding.etTypeItState.setText(it)
 
@@ -70,6 +75,7 @@ class ListMembersFragment : Fragment() {
 
         viewModel.loadLiveData.observe(viewLifecycleOwner, Observer {
             binding.pbLoad.isVisible = it
+            binding.swipeRefresh.isRefreshing = it
         })
 
 

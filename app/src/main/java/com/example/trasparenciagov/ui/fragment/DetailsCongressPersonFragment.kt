@@ -62,6 +62,7 @@ class DetailsCongressPersonFragment : Fragment() {
             viewModel.savePoliticalLocal()
         }
 
+
         viewModel.sendEmailPoliticalLiveData.observe(viewLifecycleOwner, Observer {
             try {
                 val intent =

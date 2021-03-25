@@ -14,4 +14,13 @@
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.TrasparenciaGov.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.TrasparenciaGov.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.TrasparenciaGov.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

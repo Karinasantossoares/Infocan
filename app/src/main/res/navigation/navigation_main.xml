@@ -3,34 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/listSaveMembersFragment">
 
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.trasparenciagov.ui.fragment.SplashFragment"
-        android:label="SplashFragment"
-        tools:layout="@layout/fragment_splash">
-        <action
-            android:id="@+id/action_splashFragment_to_listSaveMembersFragment"
-            app:destination="@id/listSaveMembersFragment"
-            app:popUpTo="@id/listSaveMembersFragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
     <fragment
         android:id="@+id/listSaveMembersFragment"
         android:name="com.example.trasparenciagov.ui.fragment.ListMembersFragment"
         android:label="ListSaveMembersFragment"
         tools:layout="@layout/fragment_list_members">
         <action
-            android:id="@+id/action_listSaveMembersFragment_to_listResultMembersFragment"
-            app:destination="@id/detailsCongressPersonFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/detailsCongressPersonFragment"/>
-        <action
             android:id="@+id/action_listSaveMembersFragment_to_detailsCongressPersonFragment"
             app:destination="@id/detailsCongressPersonFragment"
-            app:popUpTo="@id/detailsCongressPersonFragment"
-            app:popUpToInclusive="true"/>
+           />
     </fragment>
     <fragment
         android:id="@+id/detailsCongressPersonFragment"

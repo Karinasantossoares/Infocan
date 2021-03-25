@@ -31,7 +31,10 @@
     <string name="message_success_insert_political">Item salvo com sucesso!</string>
     <string name="error_save_political">Erro ao salvar item.</string>
     <string name="remove">message_change_remove</string>
-    <string name="message_set_text_save">Remover</string>
+    <string name="message_set_text_remove">Remover</string>
     <string name="message_save_ok">Salvar</string>
     <string name="error_list_isEmpty">Não existem deputados para serem listados.</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="message_item_save">SALVOS</string>
+    <string name="message_item_results">RESULTADOS</string>
 </resources>
