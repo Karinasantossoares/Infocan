@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.trasparenciagov.R
-import com.example.trasparenciagov.adapter.MembersAdapter
+import com.example.trasparenciagov.ui.adapter.MembersAdapter
 import com.example.trasparenciagov.databinding.FragmentListMembersBinding
 import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.example.trasparenciagov.viewModel.InfocanViewModel
@@ -36,12 +36,11 @@ class ListMembersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getPoliticalLocal()
         viewModel.clearLiveDatas()
 
 
 
-        membersAdapter = MembersAdapter(onClick = { perfilPerson ->
+        membersAdapter = MembersAdapter(requireContext(), onClick = { perfilPerson ->
             viewModel.selectedPolitical(perfilPerson)
             findNavController().navigate(R.id.action_listSaveMembersFragment_to_detailsCongressPersonFragment)
         })
@@ -64,6 +63,10 @@ class ListMembersFragment : Fragment() {
             viewModel.getPoliticalLocal()
         }
 
+        viewModel.swipeRefreshLiveData.observe(viewLifecycleOwner, Observer {
+            binding.swipeRefresh.isRefreshing =it
+        })
+
         viewModel.ufPreferencesLiveData.observe(viewLifecycleOwner, Observer {
             binding.etTypeItState.setText(it)
 
@@ -75,8 +78,8 @@ class ListMembersFragment : Fragment() {
 
         viewModel.loadLiveData.observe(viewLifecycleOwner, Observer {
             binding.pbLoad.isVisible = it
-            binding.swipeRefresh.isRefreshing = it
         })
+
 
 
         viewModel.errorListPoliticalLiveData.observe(viewLifecycleOwner, Observer {
@@ -95,6 +98,11 @@ class ListMembersFragment : Fragment() {
                     binding.rvDeputies.adapter = membersAdapter
                 }
             })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clearSelecetedLiveData()
     }
 
 }

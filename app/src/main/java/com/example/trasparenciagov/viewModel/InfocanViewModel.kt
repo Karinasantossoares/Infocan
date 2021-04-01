@@ -44,8 +44,10 @@ class InfocanViewModel(
     var setTitleSaveOrResultMembers = MutableLiveData<String>()
     var textSaveorResult = MutableLiveData<Boolean>()
     var saveMembersLiveData = MutableLiveData<Unit>()
+    var swipeRefreshLiveData =MutableLiveData<Boolean>()
 
     init {
+        getPoliticalLocal()
         setTextSaveorRemoveLiveData.value = context.getString(R.string.message_save_ok)
         if (saveMembersLiveData.value == null) {
             setTextSaveorRemoveLiveData.value = context.getString(R.string.message_set_text_remove)
@@ -132,6 +134,7 @@ class InfocanViewModel(
 
     fun getPoliticalLocal() {
         loadLiveData.value = true
+        swipeRefreshLiveData.value=true
         setTitleSaveOrResultMembers.value = context.getString(R.string.message_item_results)
         disposables.addAll(useCase.getPoliticalLocal().subscribe { res, _ ->
             if (res != null) {
@@ -141,8 +144,10 @@ class InfocanViewModel(
                     messageloadmore.value = false
                 }
                 loadLiveData.value = false
+                swipeRefreshLiveData.value=false
                 successListPoliticalLiveData.value = res.toMutableList()
             } else {
+                swipeRefreshLiveData.value=false
                 loadLiveData.value = false
                 messageErrorListLocal.value = context.getString(R.string.message_error_list_local)
             }
@@ -197,6 +202,7 @@ class InfocanViewModel(
         loadLiveData = MutableLiveData()
         messageErrorInsertPoliticalLiveData = MutableLiveData()
         messageSuccesInsertPoliticalLiveData = MutableLiveData()
+        errorListPoliticalLiveData=MutableLiveData()
     }
 
     fun sendEmail() {

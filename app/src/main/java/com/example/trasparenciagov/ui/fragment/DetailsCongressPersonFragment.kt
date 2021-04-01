@@ -3,6 +3,8 @@ package com.example.trasparenciagov.ui.fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +13,14 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.example.trasparenciagov.R
-import com.example.trasparenciagov.adapter.ExpenserAdapter
+import com.example.trasparenciagov.ui.adapter.ExpenserAdapter
 import com.example.trasparenciagov.databinding.FragmentDetailsCongressPersonBinding
 import com.example.trasparenciagov.extensions.addMask
 import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.example.trasparenciagov.extensions.toText
-import com.example.trasparenciagov.model.network.SendEmail
 import com.example.trasparenciagov.viewModel.InfocanViewModel
-import com.squareup.picasso.Picasso
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
@@ -83,11 +84,7 @@ class DetailsCongressPersonFragment : Fragment() {
         viewModel.loadLiveData.observe(viewLifecycleOwner, Observer {
             binding.pbLoad.isVisible = it
         })
-
-        viewModel.loadLiveData.observe(viewLifecycleOwner, Observer {
-            binding.pbLoad.isVisible = it
-        })
-
+        
         viewModel.messageSuccesInsertPoliticalLiveData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
@@ -109,10 +106,10 @@ class DetailsCongressPersonFragment : Fragment() {
                 binding.tvStatusSituation.text = it.situacao
                 binding.tvNumberPhone.text = it.telefone
                 it.urlFoto.let { image ->
-                    Picasso.get()
+                    Glide.with(requireContext())
                         .load(image)
-                        .fit()
-                        .centerCrop().into(binding.ivPersonDetails)
+                        .centerCrop()
+                        .into(binding.ivPersonDetails)
                 }
             }
         })
@@ -123,11 +120,5 @@ class DetailsCongressPersonFragment : Fragment() {
         })
 
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.clearSelecetedLiveData()
-    }
-
 
 }

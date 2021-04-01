@@ -86,7 +86,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_save_details"
                     android:layout_width="0dp"
-                    android:layout_height="52dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/shape_button_ok"
@@ -148,28 +148,27 @@
                     android:id="@+id/tv_number_date_of_birth"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="21dp"
                     android:layout_marginTop="6dp"
                     android:fontFamily="@font/roboto_bold"
                     tools:text="26/06/1997"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_name_date_of_birth"
+                    app:layout_constraintRight_toRightOf="@id/tv_name_date_of_birth"
                     android:textColor="@color/text_color_black"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_name_date_of_birth" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_name_party"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="18dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto_bold"
                     tools:text="REPUBLICANOS"
                     android:textColor="@color/text_color_black"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_party"
                     app:layout_constraintTop_toBottomOf="@id/tv_party" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -190,14 +189,13 @@
                     android:id="@+id/tv_number_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="23dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto_bold"
-                    tools:text="3215-5587"
+                    tools:text="33333333"
                     android:textColor="@color/text_color_black"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_name_phone"
                     app:layout_constraintTop_toBottomOf="@id/tv_name_phone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -218,14 +216,13 @@
                     android:id="@+id/tv_status_situation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="52dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto_bold"
                     tools:text="EXERCÍCIO"
                     android:textColor="@color/text_color_black"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_name_situation"
                     app:layout_constraintTop_toBottomOf="@id/tv_name_situation" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -247,7 +244,8 @@
                     android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/name_member_details"
+                   app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     tools:visibility="visible" />
 
                 <androidx.recyclerview.widget.RecyclerView

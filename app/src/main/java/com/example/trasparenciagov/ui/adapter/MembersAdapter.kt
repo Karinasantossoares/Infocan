@@ -1,9 +1,11 @@
-package com.example.trasparenciagov.adapter
+package com.example.trasparenciagov.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.trasparenciagov.R
 import com.example.trasparenciagov.model.network.PerfilPersonResponse
 import com.example.trasparenciagov.databinding.ItemMembersBinding
@@ -11,9 +13,11 @@ import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.squareup.picasso.Picasso
 
 class MembersAdapter(
+    private val context: Context,
     private val onClick: (PerfilPersonResponse) -> Unit,
-    private var listPersonCongress: List<PerfilPersonResponse> = mutableListOf()
-) : RecyclerView.Adapter<MembersAdapter.InfocanViewHolder>() {
+    private var listPersonCongress: List<PerfilPersonResponse> = mutableListOf(),
+
+    ) : RecyclerView.Adapter<MembersAdapter.InfocanViewHolder>() {
 
 
     fun addAll(listPersonCongress: List<PerfilPersonResponse>) {
@@ -41,9 +45,8 @@ class MembersAdapter(
         fun bindView(personCongress: PerfilPersonResponse) {
             binding.tvNamePerson.text = personCongress.nome
             binding.tvBroken.text = personCongress.siglaPartido
-            Picasso.get()
+            Glide.with(context)
                 .load(personCongress.urlFoto)
-                .fit()
                 .centerCrop()
                 .into(binding.ivPerson)
             binding.ivPerson.setOnClickListenerAnim {

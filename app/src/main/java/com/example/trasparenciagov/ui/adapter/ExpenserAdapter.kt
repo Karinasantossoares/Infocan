@@ -1,4 +1,4 @@
-package com.example.trasparenciagov.adapter
+package com.example.trasparenciagov.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trasparenciagov.R
 import com.example.trasparenciagov.model.network.DespesasResponse
 import com.example.trasparenciagov.databinding.ItemExpensesBinding
-import com.example.trasparenciagov.extensions.addMask
-import com.example.trasparenciagov.extensions.toDate
-import com.example.trasparenciagov.extensions.toText
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ExpenserAdapter(
     private val listDespesasResponse: List<DespesasResponse>,
