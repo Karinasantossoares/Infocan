@@ -39,7 +39,9 @@ class InfocanUseCase(
     fun deletePolicalLocal(political: PerfilPersonResponse) =
         perfilPoliticalRepository.deletePolitical(political)
 
-    fun getDetailsLocal(id:Int) = detailsPersonRepository.getDetails(id)
+    fun getDetailsLocal(id: Int) = detailsPersonRepository.getDetails(id)
+
+    fun getSinglePoliticalLocal(id: Int) =perfilPoliticalRepository.getSinglePoliticalLocal(id)
 
     fun deleteDeatislsLocal(detailsPersonResponse: DetailsPersonResponse) =
         detailsPersonRepository.deleteDeatils(detailsPersonResponse)
@@ -47,7 +49,7 @@ class InfocanUseCase(
     fun insertDetailsLocal(detailsPersonResponse: DetailsPersonResponse) =
         detailsPersonRepository.deleteDeatils(detailsPersonResponse)
 
-    fun getExpensesLocal(id:Int) =
+    fun getExpensesLocal(id: Int) =
         expenseRepository.getExpense(id)
 
     fun deleteExpensesLocal(despesasResponse: DespesasResponse) =

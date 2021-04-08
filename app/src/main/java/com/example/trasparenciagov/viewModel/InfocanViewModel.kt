@@ -9,6 +9,7 @@ import com.example.trasparenciagov.model.network.DespesasResponse
 import com.example.trasparenciagov.model.network.DetailsPersonResponse
 import com.example.trasparenciagov.model.network.PerfilPersonResponse
 import com.example.trasparenciagov.model.network.SendEmail
+import com.example.trasparenciagov.model.persistencesRoom.PerfilPersonEntity
 import com.example.trasparenciagov.useCase.InfocanUseCase
 import io.reactivex.disposables.CompositeDisposable
 
@@ -42,9 +43,10 @@ class InfocanViewModel(
     var messageErrorInsertPoliticalLiveData = MutableLiveData<String>()
     var setTextSaveorRemoveLiveData = MutableLiveData<String>()
     var setTitleSaveOrResultMembers = MutableLiveData<String>()
-    var textSaveorResult = MutableLiveData<Boolean>()
     var saveMembersLiveData = MutableLiveData<Unit>()
-    var swipeRefreshLiveData =MutableLiveData<Boolean>()
+    var swipeRefreshLiveData = MutableLiveData<Boolean>()
+    var verifyItemSave = MutableLiveData<PerfilPersonResponse>()
+    var errorVerifyItemSave = MutableLiveData<String>()
 
     init {
         getPoliticalLocal()
@@ -67,6 +69,7 @@ class InfocanViewModel(
     }
 
     fun getListPolitical(siglaUf: List<String>) {
+        setTitleSaveOrResultMembers.value = context.getString(R.string.message_item_results)
         setTextSaveorRemoveLiveData.value = context.getString(R.string.message_save_ok)
         loadLiveData.value = true
         requestPersonPerfil.value = siglaUf
@@ -134,20 +137,22 @@ class InfocanViewModel(
 
     fun getPoliticalLocal() {
         loadLiveData.value = true
-        swipeRefreshLiveData.value=true
-        setTitleSaveOrResultMembers.value = context.getString(R.string.message_item_results)
+        swipeRefreshLiveData.value = true
         disposables.addAll(useCase.getPoliticalLocal().subscribe { res, _ ->
             if (res != null) {
                 if (res.isNotEmpty()) {
                     setTitleSaveOrResultMembers.value =
                         context.getString(R.string.message_item_save)
                     messageloadmore.value = false
+                } else {
+                    setTitleSaveOrResultMembers.value =
+                        context.getString(R.string.message_item_results)
                 }
                 loadLiveData.value = false
-                swipeRefreshLiveData.value=false
+                swipeRefreshLiveData.value = false
                 successListPoliticalLiveData.value = res.toMutableList()
             } else {
-                swipeRefreshLiveData.value=false
+                swipeRefreshLiveData.value = false
                 loadLiveData.value = false
                 messageErrorListLocal.value = context.getString(R.string.message_error_list_local)
             }
@@ -159,10 +164,14 @@ class InfocanViewModel(
         selectedPoliticalLiveData.value?.let {
             disposables.addAll(useCase.deletePolicalLocal(it).subscribe { res, _ ->
                 if (res != null) {
+                    loadLiveData.value = false
                     messageSuccessDeletePoliticalLiveData.value =
                         context.getString(R.string.message_delete_political_ok)
-                } else messageErrorDeletePoliticalLiveData.value =
+                } else
+                    messageErrorDeletePoliticalLiveData.value =
                     context.getString(R.string.message_error_delete_political)
+                loadLiveData.value=false
+
             })
         }
     }
@@ -174,20 +183,32 @@ class InfocanViewModel(
             disposables.addAll(useCase.insertPoliticalLocal(it).subscribe { res, _ ->
                 if (res != null) {
                     loadLiveData.value = false
-                    saveMembersLiveData.value = res
-                    messageSuccesInsertPoliticalLiveData.value =
-                        context.getString(R.string.message_success_insert_political)
                     setTextSaveorRemoveLiveData.value =
                         context.getString(R.string.message_set_text_remove)
+                    messageSuccesInsertPoliticalLiveData.value =
+                        context.getString(R.string.message_success_insert_political)
                 } else {
                     loadLiveData.value = false
-                    saveMembersLiveData.value = res
                     messageErrorInsertPoliticalLiveData.value =
                         context.getString(R.string.error_save_political)
-                    setTextSaveorRemoveLiveData.value = context.getString(R.string.message_save_ok)
                 }
             })
         }
+    }
+
+    fun getSinglePoliticalLocal() {
+        selectedPoliticalLiveData.value?.let {
+            disposables.addAll(useCase.getSinglePoliticalLocal(it.id).subscribe { res, error ->
+                if (res != null) {
+                    deletePoliticalLocal()
+                } else {
+                    errorVerifyItemSave.value = error.localizedMessage
+                    savePoliticalLocal()
+                }
+
+            })
+        }
+
     }
 
     fun selectedPolitical(perfil: PerfilPersonResponse) {
@@ -202,7 +223,9 @@ class InfocanViewModel(
         loadLiveData = MutableLiveData()
         messageErrorInsertPoliticalLiveData = MutableLiveData()
         messageSuccesInsertPoliticalLiveData = MutableLiveData()
-        errorListPoliticalLiveData=MutableLiveData()
+        errorListPoliticalLiveData = MutableLiveData()
+        messageSuccessDeletePoliticalLiveData = MutableLiveData()
+        messageErrorDeletePoliticalLiveData= MutableLiveData()
     }
 
     fun sendEmail() {
@@ -210,6 +233,7 @@ class InfocanViewModel(
             sendEmailPoliticalLiveData.value = SendEmail(email = it.email)
         }
     }
+
 
 }
 

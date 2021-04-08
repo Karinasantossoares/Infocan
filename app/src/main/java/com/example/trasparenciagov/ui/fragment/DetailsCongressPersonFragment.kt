@@ -3,8 +3,6 @@ package com.example.trasparenciagov.ui.fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +19,7 @@ import com.example.trasparenciagov.extensions.addMask
 import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.example.trasparenciagov.extensions.toText
 import com.example.trasparenciagov.viewModel.InfocanViewModel
+import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
@@ -48,11 +47,9 @@ class DetailsCongressPersonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         viewModel.getDetailsExpense()
         viewModel.getDetailsPolitical()
         viewModel.clearLiveDatas()
-
 
         binding.tvAtualizationDetails.addMask("NN/NN/NNNN")
         binding.tvAtualizationDetails.setText(Date().toText())
@@ -60,7 +57,7 @@ class DetailsCongressPersonFragment : Fragment() {
             viewModel.sendEmail()
         }
         binding.btnSaveDetails.setOnClickListenerAnim {
-            viewModel.savePoliticalLocal()
+            viewModel.getSinglePoliticalLocal()
         }
 
 
@@ -84,7 +81,8 @@ class DetailsCongressPersonFragment : Fragment() {
         viewModel.loadLiveData.observe(viewLifecycleOwner, Observer {
             binding.pbLoad.isVisible = it
         })
-        
+
+
         viewModel.messageSuccesInsertPoliticalLiveData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
@@ -95,6 +93,14 @@ class DetailsCongressPersonFragment : Fragment() {
 
         viewModel.setTextSaveorRemoveLiveData.observe(viewLifecycleOwner, Observer {
             binding.btnSaveDetails.text = it
+        })
+
+        viewModel.messageSuccessDeletePoliticalLiveData.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.messageErrorDeletePoliticalLiveData.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
         viewModel.succesDetailsPolitical.observe(viewLifecycleOwner, Observer {
@@ -109,6 +115,8 @@ class DetailsCongressPersonFragment : Fragment() {
                     Glide.with(requireContext())
                         .load(image)
                         .centerCrop()
+                        .placeholder(R.drawable.progress_animate)
+                        .skipMemoryCache(true)
                         .into(binding.ivPersonDetails)
                 }
             }

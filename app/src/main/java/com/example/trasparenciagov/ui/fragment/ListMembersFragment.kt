@@ -1,11 +1,13 @@
 package com.example.trasparenciagov.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -14,6 +16,7 @@ import com.example.trasparenciagov.R
 import com.example.trasparenciagov.ui.adapter.MembersAdapter
 import com.example.trasparenciagov.databinding.FragmentListMembersBinding
 import com.example.trasparenciagov.extensions.setOnClickListenerAnim
+import com.example.trasparenciagov.model.network.PerfilPersonResponse
 import com.example.trasparenciagov.viewModel.InfocanViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -37,7 +40,7 @@ class ListMembersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.clearLiveDatas()
-
+        viewModel.getPoliticalLocal()
 
 
         membersAdapter = MembersAdapter(requireContext(), onClick = { perfilPerson ->
@@ -64,7 +67,7 @@ class ListMembersFragment : Fragment() {
         }
 
         viewModel.swipeRefreshLiveData.observe(viewLifecycleOwner, Observer {
-            binding.swipeRefresh.isRefreshing =it
+            binding.swipeRefresh.isRefreshing = it
         })
 
         viewModel.ufPreferencesLiveData.observe(viewLifecycleOwner, Observer {

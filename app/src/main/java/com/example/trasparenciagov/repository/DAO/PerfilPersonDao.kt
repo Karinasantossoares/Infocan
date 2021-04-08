@@ -14,6 +14,9 @@ interface PerfilPersonDao {
     @Query("SELECT * FROM perfil")
     fun getAllPolitical () : Single<List<PerfilPersonEntity>>
 
+    @Query("SELECT * FROM perfil WHERE uid =:id ")
+    fun getSinglePoliticalLocal(id:Int): Single<PerfilPersonEntity>
+
     @Delete
     fun deletePolitical(perfilPersonEntity: PerfilPersonEntity)
 

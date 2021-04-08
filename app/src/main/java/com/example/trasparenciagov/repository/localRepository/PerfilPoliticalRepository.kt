@@ -14,10 +14,15 @@ class PerfilPoliticalRepository(
     fun getAllPolitical() = perfilPersonDao.getAllPolitical()
         .map { listPerfilEntity ->
             listPerfilEntity.map {
-                    PerfilPersonResponse(it.uid, it.nome, it.urlFoto, it.siglaPartido)
+                PerfilPersonResponse(it.uid, it.nome, it.urlFoto, it.siglaPartido)
             }
-        }
-        .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+
+
+    fun getSinglePoliticalLocal(id: Int) = perfilPersonDao.getSinglePoliticalLocal(id).map {
+        PerfilPersonResponse(it.uid, it.nome, it.urlFoto, it.siglaPartido)
+    }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+
 
     fun deletePolitical(political: PerfilPersonResponse) =
         Single.fromCallable {
@@ -42,4 +47,6 @@ class PerfilPoliticalRepository(
                 )
             )
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+
+
 }

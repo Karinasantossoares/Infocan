@@ -37,4 +37,6 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="message_item_save">SALVOS</string>
     <string name="message_item_results">RESULTADOS</string>
+    <string name="message_item_only_save">O item já está na sua lista de salvos</string>
+
 </resources>
