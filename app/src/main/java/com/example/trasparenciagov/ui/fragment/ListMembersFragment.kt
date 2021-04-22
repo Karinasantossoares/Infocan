@@ -1,13 +1,11 @@
 package com.example.trasparenciagov.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -16,7 +14,6 @@ import com.example.trasparenciagov.R
 import com.example.trasparenciagov.ui.adapter.MembersAdapter
 import com.example.trasparenciagov.databinding.FragmentListMembersBinding
 import com.example.trasparenciagov.extensions.setOnClickListenerAnim
-import com.example.trasparenciagov.model.network.PerfilPersonResponse
 import com.example.trasparenciagov.viewModel.InfocanViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -40,7 +37,7 @@ class ListMembersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.clearLiveDatas()
-        viewModel.getPoliticalLocal()
+        viewModel.getPoliticals()
 
 
         membersAdapter = MembersAdapter(requireContext(), onClick = { perfilPerson ->
@@ -58,12 +55,15 @@ class ListMembersFragment : Fragment() {
         binding.textLoadMore.setOnClickListenerAnim {
             val siglaUf = binding.etTypeItState.text.toString()
             val list = listOf(siglaUf)
-            viewModel.getListPolitical(list)
+            viewModel.getNetworkPoliticals(list)
         }
 
+        binding.btnSeeMyMembers.setOnClickListenerAnim {
+            viewModel.getAllLocalPoliticals()
+        }
 
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getPoliticalLocal()
+            viewModel.getAllLocalPoliticals()
         }
 
         viewModel.swipeRefreshLiveData.observe(viewLifecycleOwner, Observer {
@@ -93,7 +93,7 @@ class ListMembersFragment : Fragment() {
             binding.textLoadMore.isVisible = it
         })
 
-        viewModel.successListPoliticalLiveData.observe(
+        viewModel.refreshListPoliticalLiveData.observe(
             viewLifecycleOwner,
             Observer { listPersonResponse ->
                 if (listPersonResponse != null) {

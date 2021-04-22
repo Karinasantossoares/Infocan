@@ -1,141 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_refresh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.fragment.ListMembersFragment">
+            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title_type_it_members"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:fontFamily="@font/comfortaa_light"
-                android:lineHeight="34.5dp"
-                android:text="@string/text_type_it_state"
-                android:textColor="@color/text_color_black"
-                android:textSize="31sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_type_it_state"
-                android:layout_width="0dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/edit_text_search_shape"
-                android:fontFamily="@font/roboto_light"
-                android:hint="@string/text_hint_et"
-                android:lineHeight="18dp"
-                android:lines="1"
-                android:maxLines="1"
-                android:inputType="text"
-                android:padding="17dp"
-                android:textColorHint="@color/text_color_black"
-                app:layout_constraintRight_toLeftOf="@id/btn_ok_list_save_fragment"
-                app:layout_constraintLeft_toLeftOf="@id/title_type_it_members"
-                app:layout_constraintTop_toBottomOf="@id/title_type_it_members" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_ok_list_save_fragment"
-                android:layout_width="90dp"
-                android:layout_height="52dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape_button_ok"
-                android:fontFamily="@font/roboto_bold"
-                android:layout_marginStart="5dp"
-                android:text="@string/text_ok"
-                android:textColor="@color/white"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/et_type_it_state"
-                app:layout_constraintLeft_toRightOf="@id/et_type_it_state"
-                app:layout_constraintTop_toTopOf="@id/et_type_it_state" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_saves"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintLeft_toLeftOf="@id/title_type_it_members"
-                app:layout_constraintTop_toBottomOf="@id/et_type_it_state"
-                tools:text="SALVOS" />
-
-
-            <ProgressBar
-                android:id="@+id/pb_load"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_deputies"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_saves"
-                app:spanCount="3"
-                tools:itemCount="9"
-                tools:listitem="@layout/item_members" />
+                tools:context=".ui.fragment.ListMembersFragment">
 
-            <TextView
-                android:id="@+id/text_load_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/edit_text_search_shape"
-                android:padding="10dp"
-                android:layout_marginTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="@string/load_more"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="@id/rv_deputies"
-                app:layout_constraintRight_toRightOf="@id/rv_deputies"
-                app:layout_constraintTop_toBottomOf="@id/rv_deputies"
-                tools:visibility="visible" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_type_it_members"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/comfortaa_light"
+                    android:text="@string/text_type_it_state"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="31sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_type_it_state"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edit_text_search_shape"
+                    android:fontFamily="@font/roboto_light"
+                    android:hint="@string/text_hint_et"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="17dp"
+                    android:textColorHint="@color/text_color_black"
+                    app:layout_constraintLeft_toLeftOf="@id/title_type_it_members"
+                    app:layout_constraintRight_toLeftOf="@id/btn_ok_list_save_fragment"
+                    app:layout_constraintTop_toBottomOf="@id/title_type_it_members" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_ok_list_save_fragment"
+                    android:layout_width="90dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape_button_ok"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/text_ok"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/et_type_it_state"
+                    app:layout_constraintLeft_toRightOf="@id/et_type_it_state"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_type_it_state" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_saves"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/gray_slow"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="@id/title_type_it_members"
+                    app:layout_constraintTop_toBottomOf="@id/et_type_it_state"
+                    tools:text="Salvos" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_see_my_members"
+                    android:drawableEnd="@drawable/ic_saved"
+                    android:drawablePadding="8dp"
+                    android:textAllCaps="false"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/my_members_saves"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_saves"
+                    app:layout_constraintEnd_toEndOf="@id/rv_deputies"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toEndOf="@+id/tv_saves"
+                    app:layout_constraintTop_toTopOf="@+id/tv_saves" />
 
 
-    </androidx.core.widget.NestedScrollView>
+                <ProgressBar
+                    android:id="@+id/pb_load"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_deputies"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="30dp"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_load_more"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_saves"
+                    app:layout_constraintVertical_bias="1"
+                    app:spanCount="3"
+                    tools:itemCount="9"
+                    tools:listitem="@layout/item_members" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/text_load_more"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:drawableEnd="@drawable/ic_arrow_bottom"
+                    android:drawablePadding="15dp"
+                    android:padding="10dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/load_more"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_deputies"
+                    app:layout_constraintVertical_bias="0"
+                    tools:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

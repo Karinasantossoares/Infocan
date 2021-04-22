@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trasparenciagov.R
 import com.example.trasparenciagov.model.network.DespesasResponse
 import com.example.trasparenciagov.databinding.ItemExpensesBinding
+import com.example.trasparenciagov.extensions.toDate
+import com.example.trasparenciagov.extensions.toText
+import com.example.trasparenciagov.extensions.toTextDate
 
 class ExpenserAdapter(
     private val listDespesasResponse: List<DespesasResponse>,
@@ -35,7 +38,7 @@ class ExpenserAdapter(
         private val binding = ItemExpensesBinding.bind(itemView)
 
         fun bindView(despesasResponse: DespesasResponse) {
-            binding.tvDateList.setText(despesasResponse.dataDocumento)
+            binding.tvDateList.text = despesasResponse.dataDocumento.toTextDate()
             binding.tvTitleDetailsMembers.text =
                 despesasResponse.tipoDespesa
             binding.tvPriceList.text = despesasResponse.valorDocumento.toString()

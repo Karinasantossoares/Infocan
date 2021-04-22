@@ -5,7 +5,6 @@ import com.example.trasparenciagov.R
 import com.example.trasparenciagov.model.network.DespesasResponse
 import com.example.trasparenciagov.model.network.DetailsPersonResponse
 import com.example.trasparenciagov.model.network.PerfilPersonResponse
-import com.example.trasparenciagov.repository.localRepository.DetailsPersonRepository
 import com.example.trasparenciagov.repository.localRepository.ExpenseRepository
 import com.example.trasparenciagov.repository.localRepository.PerfilPoliticalRepository
 
@@ -17,7 +16,6 @@ class InfocanUseCase(
     private val context: Context,
     private val repository: InfocanRepository,
     private val perfilPoliticalRepository: PerfilPoliticalRepository,
-    private val detailsPersonRepository: DetailsPersonRepository,
     private val expenseRepository: ExpenseRepository
 ) {
     fun getListPolitical(siglaUf: List<String>, numberPage: Int) =
@@ -39,15 +37,7 @@ class InfocanUseCase(
     fun deletePolicalLocal(political: PerfilPersonResponse) =
         perfilPoliticalRepository.deletePolitical(political)
 
-    fun getDetailsLocal(id: Int) = detailsPersonRepository.getDetails(id)
-
-    fun getSinglePoliticalLocal(id: Int) =perfilPoliticalRepository.getSinglePoliticalLocal(id)
-
-    fun deleteDeatislsLocal(detailsPersonResponse: DetailsPersonResponse) =
-        detailsPersonRepository.deleteDeatils(detailsPersonResponse)
-
-    fun insertDetailsLocal(detailsPersonResponse: DetailsPersonResponse) =
-        detailsPersonRepository.deleteDeatils(detailsPersonResponse)
+    fun getSinglePoliticalLocal(id: Int) = perfilPoliticalRepository.getSinglePoliticalLocal(id)
 
     fun getExpensesLocal(id: Int) =
         expenseRepository.getExpense(id)

@@ -1,4 +1,4 @@
-package com.example.trasparenciagov.repository.DAO
+package com.example.trasparenciagov.repository.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -11,11 +11,11 @@ import io.reactivex.Single
 interface ExpenseDao {
 
     @Query("SELECT * FROM expenses WHERE uid=:id")
-    fun getExpense (id:Int) : Single<ExpenseEntity>
+    fun getExpense(id: Int): Single<ExpenseEntity>
 
     @Delete
-    fun deleteExpense(expenseEntity: ExpenseEntity)
+    fun deleteExpense(expenseEntity: ExpenseEntity): Single<Unit>
 
     @Insert
-    fun insertExpense(expenseEntity: ExpenseEntity)
+    fun insertExpense(expenseEntity: ExpenseEntity): Single<Unit>
 }

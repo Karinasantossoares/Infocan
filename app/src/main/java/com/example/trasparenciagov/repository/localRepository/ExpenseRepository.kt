@@ -2,7 +2,7 @@ package com.example.trasparenciagov.repository.localRepository
 
 import com.example.trasparenciagov.model.network.DespesasResponse
 import com.example.trasparenciagov.model.persistencesRoom.ExpenseEntity
-import com.example.trasparenciagov.repository.DAO.ExpenseDao
+import com.example.trasparenciagov.repository.dao.ExpenseDao
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -17,25 +17,21 @@ class ExpenseRepository(
 
 
     fun deleteExpense(despesas: DespesasResponse) =
-        Single.fromCallable {
             expenseDao.deleteExpense(
                 ExpenseEntity(
                     tipoDespesa = despesas.tipoDespesa,
                     valorDocumento = despesas.valorDocumento,
                     dataDocumento = despesas.dataDocumento
                 )
-            )
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
     fun insertExpense(despesas: DespesasResponse) =
-        Single.fromCallable {
             expenseDao.insertExpense(
                 ExpenseEntity(
                     tipoDespesa = despesas.tipoDespesa,
                     valorDocumento = despesas.valorDocumento,
                     dataDocumento = despesas.dataDocumento
                 )
-            )
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
 }

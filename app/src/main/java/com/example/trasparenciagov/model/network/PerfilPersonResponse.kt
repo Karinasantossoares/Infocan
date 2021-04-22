@@ -6,8 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class PerfilPersonResponse(
-    val id: Int=0,
+    val id: Int = 0,
     val nome: String,
     val urlFoto: String,
-    val siglaPartido: String
-) :Parcelable
+    val siglaPartido: String,
+    var detail: DetailsPersonResponse? = null
+) : Parcelable

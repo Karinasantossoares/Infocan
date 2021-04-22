@@ -14,3 +14,5 @@ fun String.toDate(patterns: String = "dd/MM/yyyy"): Date? {
         null
     }
 }
+
+fun String.toTextDate() = toDate("yyyy-MM-dd")?.toText("dd/MM/yyyy")

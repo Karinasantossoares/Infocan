@@ -53,10 +53,10 @@ class InfocanViewModelTest {
         //Mocar
         val expected = listOf<PerfilPersonResponse>()
         whenever(useCase.getListPolitical(any(), any())).thenReturn(Single.just(expected))
-        viewModel.successListPoliticalLiveData.observeForever(successListPoliticalLiveData)
+        viewModel.refreshListPoliticalLiveData.observeForever(successListPoliticalLiveData)
 
         //Chamar
-        viewModel.getListPolitical(any())
+        viewModel.getNetworkPoliticals(any())
 
         //Verificar
         verify(successListPoliticalLiveData).onChanged(expected)
@@ -70,7 +70,7 @@ class InfocanViewModelTest {
         viewModel.errorListPoliticalLiveData.observeForever(errorListPoliticalLiveData)
 
         //Chamar
-        viewModel.getListPolitical(any())
+        viewModel.getNetworkPoliticals(any())
 
         //Verificar
         verify(errorListPoliticalLiveData).onChanged(errorMessage)

@@ -28,13 +28,10 @@ class InfocanRepository(private val service: InfocanService) {
             .observeOn(AndroidSchedulers.mainThread()).map { detailsPersonResponseDTO ->
                 detailsPersonResponseDTO.dados.run {
                     DetailsPersonResponse(
-                        nome = this.ultimoStatus.nome,
                         email = this.ultimoStatus.email,
                         dataNascimento = dataNascimento,
-                        siglaPartido = this.ultimoStatus.siglaPartido,
                         telefone = this.ultimoStatus.gabinete.telefone,
                         situacao = this.ultimoStatus.situacao,
-                        urlFoto = this.ultimoStatus.urlFoto
                     )
                 }
             }

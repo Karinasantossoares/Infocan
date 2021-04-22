@@ -1,4 +1,4 @@
-package com.example.trasparenciagov.repository.DAO
+package com.example.trasparenciagov.repository.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -18,9 +18,9 @@ interface PerfilPersonDao {
     fun getSinglePoliticalLocal(id:Int): Single<PerfilPersonEntity>
 
     @Delete
-    fun deletePolitical(perfilPersonEntity: PerfilPersonEntity)
+    fun deletePolitical(perfilPersonEntity: PerfilPersonEntity): Single<Unit>
 
     @Insert
-    fun insertPolitical(perfilPersonEntity: PerfilPersonEntity)
+    fun insertPolitical(perfilPersonEntity: PerfilPersonEntity): Single<Unit>
 
 }

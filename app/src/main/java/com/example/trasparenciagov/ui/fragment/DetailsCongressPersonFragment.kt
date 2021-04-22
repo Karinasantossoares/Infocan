@@ -18,8 +18,9 @@ import com.example.trasparenciagov.databinding.FragmentDetailsCongressPersonBind
 import com.example.trasparenciagov.extensions.addMask
 import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.example.trasparenciagov.extensions.toText
+import com.example.trasparenciagov.extensions.toTextDate
+import com.example.trasparenciagov.model.network.DetailsPersonResponse
 import com.example.trasparenciagov.viewModel.InfocanViewModel
-import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
@@ -43,21 +44,21 @@ class DetailsCongressPersonFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getDetailsExpense()
         viewModel.getDetailsPolitical()
+        viewModel.verifyStatusSavedUser()
         viewModel.clearLiveDatas()
 
-        binding.tvAtualizationDetails.addMask("NN/NN/NNNN")
-        binding.tvAtualizationDetails.setText(Date().toText())
+
+        binding.tvAtualization.text = getString(R.string.message_atualization,Date().toText("dd/MM/yyyy") )
         binding.btnSendEmailDetails.setOnClickListenerAnim {
             viewModel.sendEmail()
         }
         binding.btnSaveDetails.setOnClickListenerAnim {
-            viewModel.getSinglePoliticalLocal()
+            viewModel.saveOrDeletePolitical()
         }
 
 
@@ -76,6 +77,10 @@ class DetailsCongressPersonFragment : Fragment() {
                 ).show()
                 e.printStackTrace()
             }
+        })
+
+        viewModel.errorEventDetailsPoliticalLiveData.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
         viewModel.loadLiveData.observe(viewLifecycleOwner, Observer {
@@ -103,14 +108,14 @@ class DetailsCongressPersonFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
-        viewModel.succesDetailsPolitical.observe(viewLifecycleOwner, Observer {
+        viewModel.selectedPoliticalLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.nameMemberDetails.text = it.nome
-                binding.emailMembersDetails.text = it.email
-                binding.tvNumberDateOfBirth.text = it.dataNascimento
+                binding.emailMembersDetails.text = it.detail?.email
+                binding.tvNumberDateOfBirth.text = it.detail?.dataNascimento?.toTextDate()
                 binding.tvNameParty.text = it.siglaPartido
-                binding.tvStatusSituation.text = it.situacao
-                binding.tvNumberPhone.text = it.telefone
+                binding.tvStatusSituation.text = it.detail?.situacao
+                binding.tvNumberPhone.text = it.detail?.telefone
                 it.urlFoto.let { image ->
                     Glide.with(requireContext())
                         .load(image)
