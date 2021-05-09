@@ -11,7 +11,6 @@ class BaseApplication : Application() {
         startKoin {
             androidContext(this@BaseApplication)
             modules(infocanModule)
-
         }
     }
 }

@@ -1,8 +1,18 @@
 package com.example.trasparenciagov.model.dto
 
+import com.example.trasparenciagov.model.network.DetailsPersonResponse
+
 data class DetailsPersonResponseDTO(
     val dados: Dados
-)
+){
+    fun toDetailsResponse() :DetailsPersonResponse =
+        DetailsPersonResponse(
+            this.dados.ultimoStatus.email,
+            this.dados.dataNascimento,
+            this.dados.ultimoStatus.gabinete.telefone,
+            this.dados.ultimoStatus.situacao
+        )
+}
 
 data class Dados(
     val dataNascimento: String,

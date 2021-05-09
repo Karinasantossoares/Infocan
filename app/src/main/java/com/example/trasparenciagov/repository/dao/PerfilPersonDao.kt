@@ -1,10 +1,8 @@
 package com.example.trasparenciagov.repository.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.trasparenciagov.model.persistencesRoom.PerfilPersonEntity
+import io.reactivex.Completable
 import io.reactivex.Single
 
 
@@ -20,7 +18,7 @@ interface PerfilPersonDao {
     @Delete
     fun deletePolitical(perfilPersonEntity: PerfilPersonEntity): Single<Unit>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPolitical(perfilPersonEntity: PerfilPersonEntity): Single<Unit>
 
 }

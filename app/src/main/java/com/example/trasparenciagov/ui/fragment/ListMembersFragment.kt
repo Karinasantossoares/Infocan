@@ -85,7 +85,7 @@ class ListMembersFragment : Fragment() {
 
 
 
-        viewModel.errorListPoliticalLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.errorVerifyItemSave.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 

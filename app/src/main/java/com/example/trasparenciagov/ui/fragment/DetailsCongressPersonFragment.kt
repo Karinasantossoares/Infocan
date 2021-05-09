@@ -15,11 +15,10 @@ import com.bumptech.glide.Glide
 import com.example.trasparenciagov.R
 import com.example.trasparenciagov.ui.adapter.ExpenserAdapter
 import com.example.trasparenciagov.databinding.FragmentDetailsCongressPersonBinding
-import com.example.trasparenciagov.extensions.addMask
 import com.example.trasparenciagov.extensions.setOnClickListenerAnim
 import com.example.trasparenciagov.extensions.toText
 import com.example.trasparenciagov.extensions.toTextDate
-import com.example.trasparenciagov.model.network.DetailsPersonResponse
+import com.example.trasparenciagov.model.network.PerfilPersonResponse
 import com.example.trasparenciagov.viewModel.InfocanViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import java.util.*
@@ -79,9 +78,7 @@ class DetailsCongressPersonFragment : Fragment() {
             }
         })
 
-        viewModel.errorEventDetailsPoliticalLiveData.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        })
+
 
         viewModel.loadLiveData.observe(viewLifecycleOwner, Observer {
             binding.pbLoad.isVisible = it
@@ -92,7 +89,7 @@ class DetailsCongressPersonFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
-        viewModel.messageErrorInsertPoliticalLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.messageErrorLiveData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
@@ -104,11 +101,7 @@ class DetailsCongressPersonFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
-        viewModel.messageErrorDeletePoliticalLiveData.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        })
-
-        viewModel.selectedPoliticalLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.selectedPolitical.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.nameMemberDetails.text = it.nome
                 binding.emailMembersDetails.text = it.detail?.email

@@ -6,14 +6,14 @@ import com.example.trasparenciagov.repository.dao.PerfilPersonDao
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class PerfilPoliticalRepository(
+class PerfilPoliticalLocalRepository(
     private val perfilPersonDao: PerfilPersonDao
 ) {
 
     fun getAllPolitical() = perfilPersonDao.getAllPolitical()
         .map { listPerfilEntity ->
             listPerfilEntity.map {
-                PerfilPersonResponse(it.uid, it.nome, it.urlFoto, it.siglaPartido, it.detail)
+               it.toPerfilPersonEntity()
             }
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
